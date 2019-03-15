@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>form instruction</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+<div id="components-demo">
+    <base-checkbox v-model="lovingVue"></base-checkbox>
+</div>
+<script>
+
+    Vue.component('base-checkbox', {
+        model: {
+            prop: 'mychecked',
+            event: 'change'
+        },
+        // 此处的props里面也必须写mychecked
+        props: {
+            mychecked: Boolean
+        },
+        template: `
+    <input
+      type="checkbox"
+      v-bind:checked="mychecked"
+      v-on:change="$emit('change', $event.target.checked)"
+    >
+  `
+    })
+
+    var vm = new Vue({
+        el: '#components-demo',
+        data: {
+            lovingVue: true
+        }
+    })
+</script>
+</body>
+
+</html>
